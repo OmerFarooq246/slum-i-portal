@@ -1,13 +1,13 @@
 import BaseLayout from "@/components/BaseLayout/BaseLayout"
-import Hero from "@/components/Hero/Hero"
+import Datasets from "@/components/Landing/Datasets"
+import Hero from "@/components/Landing/Hero"
+import { Theme } from "@/typings"
 
 export default function Index() {
   return (
-    <BaseLayout title={"Home"}>
+    <BaseLayout title={"Home"} theme={Theme.LIGHT}>
       <Hero />
-      <div>
-        hello
-      </div>
+      <Datasets />
     </BaseLayout>
   )
 }

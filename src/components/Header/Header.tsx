@@ -1,11 +1,17 @@
 import Link from "next/link"
 import Button from "../UI/Button"
+import { useRouter } from "next/router"
+import { Theme } from "@/typings"
 
-export default function Header(){
+interface HeaderProps{
+  theme: Theme
+}
+
+export default function Header({theme}: HeaderProps){
   const links = [
     {
-      label: "Demo",
-      link: ""
+      label: "Portal",
+      link: "/portal"
     },
     {
       label: "Datasets",
@@ -29,21 +35,24 @@ export default function Header(){
     },
   ]
 
+  const router = useRouter()
+
   return (
     <div className="fixed top-0 left-0 z-20 w-full flex justify-between text-sm py-5 px-10">
       <Link 
         href="/" 
-        className="text-white rounded-3xl font-extrabold text-xl outline-none"
+        className={`rounded-3xl font-extrabold text-xl outline-none ${theme === Theme.DARK ? "text-foreground" : "text-white"}`}
       >
         Slum-<i>i</i>
       </Link>
       <nav className="flex space-x-2.5">
         {links.map((item, index) => 
           <Button 
-            size="small"
+            variant="small"
+            theme={theme}
             className="backdrop-blur-xl"
             key={index} 
-            // href={item.link}
+            onClick={() => router.push(item.link)}
           >
               {item.label}
           </Button>

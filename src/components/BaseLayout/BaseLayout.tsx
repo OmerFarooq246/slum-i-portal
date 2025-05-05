@@ -14,14 +14,16 @@ const geistMono = Geist_Mono({
 });
 
 import { Figtree } from "next/font/google"
+import { Theme } from '@/typings';
 const figtree = Figtree({subsets: ['latin'], variable: "--font-figtree"})
 
 type BaseLayoutProps = {
   title: string;
+  theme: Theme;
   children: ReactNode;
 };
 
-export default function BaseLayout({title, children}: BaseLayoutProps) {
+export default function BaseLayout({theme, title, children}: BaseLayoutProps) {
   return (
     <div className='relative h-screen flex flex-col'>
         <Head>
@@ -29,7 +31,7 @@ export default function BaseLayout({title, children}: BaseLayoutProps) {
             <meta name="description" content="slum-i-portal" />
             <meta name="viewport" content="width=device-width, initial-scale=1" />
         </Head>
-        <Header />
+        <Header theme={theme}/>
         <main className={`grow ${geistSans.variable} ${geistMono.variable} ${figtree.variable}`}>
             {children}
         </main>
